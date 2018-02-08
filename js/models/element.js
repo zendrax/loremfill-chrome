@@ -38,6 +38,12 @@ var TextStrategy = Backbone.Model.extend({
                 }
             }
         }
+        if (element.context.type === 'textarea') {
+            return chance.paragraph({ sentences: Math.floor((Math.random() * 10) + 5) });
+        }
+        if (element.context.getAttribute('minlength')) {
+            return chance.sentence({ words: parseInt(element.context.getAttribute('minlength')) });
+        }
         return chance.word();
     }
 });
